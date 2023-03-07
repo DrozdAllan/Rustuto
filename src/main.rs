@@ -1,34 +1,20 @@
-use rand::Rng;
-use std::cmp::Ordering;
-use std::io;
-
 fn main() {
-    println!("Guess the number!");
+    let mut x = 5;
+    println!("The value of x is: {}", x);
+    x = 6;
+    println!("The value of x is: {}", x);
 
-    let secret_number = rand::thread_rng().gen_range(0..=100);
 
-    loop {
-        println!("Please input your guess. Between 0 and 100");
+	let y = 5;
 
-        let mut guess = String::new();
+    let y = y + 1;
 
-        io::stdin()
-            .read_line(&mut guess)
-            .expect("Failed to read line");
-
-        let guess: u32 = match guess.trim().parse() {
-            Ok(num) => num,
-            Err(_) => continue,
-        };
-        println!("You guessed: {}", guess);
-
-        match guess.cmp(&secret_number) {
-            Ordering::Less => println!("Too small!"),
-            Ordering::Greater => println!("Too big!"),
-            Ordering::Equal => {
-                println!("Good job!");
-                break;
-            }
-        }
+    {
+        let y = y * 2;
+        println!("The value of y in the inner scope is: {y}");
     }
+
+    println!("The value of y is: {y}");
 }
+
+// suite https://doc.rust-lang.org/book/ch03-02-data-types.html 
